@@ -17,7 +17,7 @@ function Product(name, imageUrl) {
   allProducts.push(this);
 }
 
-// actually create products
+// actually creates products
 new Product('Bag', 'images/bag.jpg');
 new Product('Banana Slicer', 'images/banana.jpg');
 new Product('Tablet Stand', 'images/bathroom.jpg');
@@ -39,6 +39,11 @@ new Product('Tentacle Flashdrive', 'images/usb.gif');
 new Product('Watering Can', 'images/water-can.jpg');
 new Product('Wine Glass', 'images/wine-glass.jpg');
 
+//event listener runs function when product is clicked
+for (var i = 0; i < imageElements.length; i++) {
+  imageElements[i].addEventListener('click', imageWasClicked);
+}
+
 //stores clicks
 function imageWasClicked(event) {
   totalClicks++;
@@ -51,7 +56,7 @@ function imageWasClicked(event) {
   }
 }
 
-//pick random product to display and check against duplicates
+//picks random product to display and check against duplicates
 var nextProduct1 = Math.floor(Math.random() * allProducts.length);
 while((nextProduct1 === product1) || (nextProduct1 === product2) || (nextProduct1 === product3)) {
   nextProduct1 = Math.floor(Math.random() * allProducts.length);
@@ -72,18 +77,18 @@ allProducts[product2].timesSeen++;
 product3 = nextProduct3;
 allProducts[product3].timesSeen++;
 
-//display images
+//displays images
 imageElements[0].src = allProducts[product1].imageUrl;
 imageElements[1].src = allProducts[product2].imageUrl;
 imageElements[2].src = allProducts[product3].imageUrl;
 
 
-//account for first three products being seen
+//accounts for first three products being seen
 allProducts[product1].timesSeen++;
 allProducts[product2].timesSeen++;
 allProducts[product3].timesSeen++;
 
-//create results tab
+//creates results tab
 if(totalClicks === rounds) {
   var resultsElement = document.getElementsByTagName('aside')[0];
   if(resultsElement.firstElementChild){
