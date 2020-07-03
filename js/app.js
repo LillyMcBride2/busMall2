@@ -39,11 +39,6 @@ new Product('Tentacle Flashdrive', 'images/usb.gif');
 new Product('Watering Can', 'images/water-can.jpg');
 new Product('Wine Glass', 'images/wine-glass.jpg');
 
-//event listener runs function when product is clicked
-for (var i = 0; i < imageElements.length; i++) {
-  imageElements[i].addEventListener('click', imageWasClicked);
-}
-
 //stores clicks
 function imageWasClicked(event) {
   totalClicks++;
@@ -54,6 +49,11 @@ function imageWasClicked(event) {
   } else if (event.srcElement.id === '3') {
     allProducts[product3].timesClicked++;
   }
+}
+
+//event listener runs function when product is clicked
+for (var i = 0; i < imageElements.length; i++) {
+  imageElements[i].addEventListener('click', imageWasClicked);
 }
 
 //picks random product to display and check against duplicates
