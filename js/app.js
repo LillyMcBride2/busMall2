@@ -47,3 +47,8 @@ new Product('Unicorn Meat', 'images/unicorn.jpg');
 new Product('Tentacle Flashdrive', 'images/usb.gif');
 new Product('Watering Can', 'images/water-can.jpg');
 new Product('Wine Glass', 'images/wine-glass.jpg');
+
+//display images
+imageElements[0].src = allProducts[product1].imageUrl;
+imageElements[1].src = allProducts[product2].imageUrl;
+imageElements[2].src = allProducts[product3].imageUrl;
