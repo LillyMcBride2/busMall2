@@ -1,0 +1,8 @@
+img {
+    border: 1px solid black;
+    height: 250px;
+    width: 30%;
+    float: left;
+    margin-left: 10px;
+}
+
