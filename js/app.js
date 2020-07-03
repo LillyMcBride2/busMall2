@@ -17,6 +17,15 @@ function Product(name, imageUrl) {
   allProducts.push(this);
 }
 
+//populate allProducts array
+function getAllProducts(productProperty) {
+  var answer = [];
+  for (var i = 0; i < allProducts.length; i++) {
+    answer[i] = allProducts[i][productProperty];
+  }
+  return answer;
+}
+
 // actually create products
 new Product('Bag', 'images/bag.jpg');
 new Product('Banana Slicer', 'images/banana.jpg');
