@@ -1,4 +1,3 @@
-
 'use strict';
 var imageElements = document.getElementsByTagName('img');
 var product1 = 0;
@@ -49,65 +48,64 @@ function imageWasClicked(event) {
   } else if (event.srcElement.id === '3') {
     allProducts[product3].timesClicked++;
   }
+
+  //accounts for first three products being seen
+  allProducts[product1].timesSeen++;
+  allProducts[product2].timesSeen++;
+  allProducts[product3].timesSeen++;
+
+
+  //picks random product to display and check against duplicates
+  var nextProduct1 = Math.floor(Math.random() * allProducts.length);
+  while((nextProduct1 === product1) || (nextProduct1 === product2) || (nextProduct1 === product3)) {
+    nextProduct1 = Math.floor(Math.random() * allProducts.length);
+  }
+  var nextProduct2 = Math.floor(Math.random() * allProducts.length);
+  while((nextProduct2 === product1) || (nextProduct2 === product2) || (nextProduct2 === product3) || (nextProduct2 === nextProduct1)) {
+    nextProduct2 = Math.floor(Math.random() * allProducts.length);
+  }
+  var nextProduct3 = Math.floor(Math.random() * allProducts.length);
+  while((nextProduct3 === product1) || (nextProduct3 === product2) || (nextProduct3 === product3) || (nextProduct3 === nextProduct1) || (nextProduct3 === nextProduct2)) {
+    nextProduct3 = Math.floor(Math.random() * allProducts.length);
+  }
+
+  product1 = nextProduct1;
+  allProducts[product1].timesSeen++;
+  product2 = nextProduct2;
+  allProducts[product2].timesSeen++;
+  product3 = nextProduct3;
+  allProducts[product3].timesSeen++;
+
+  //displays images
+  imageElements[0].src = allProducts[product1].imageUrl;
+  imageElements[1].src = allProducts[product2].imageUrl;
+  imageElements[2].src = allProducts[product3].imageUrl;
+
+  //creates results tab
+  if(totalClicks === rounds) {
+    var resultsElement = document.getElementsByTagName('aside')[0];
+    if(resultsElement.firstElementChild){
+      resultsElement.firstElementChild.remove();
+    }
+    var title = document.createElement('h2');
+    title.textContent = 'Results';
+    resultsElement.appendChild(title);
+    var createUL = document.createElement('ul');
+    for (var i=0; i < allProducts.length; i++){
+      var createLI = document.createElement('li');
+      createLI.textContent = allProducts[i].name + ' had ' + allProducts[i].timesClicked + ' votes and was shown ' + allProducts[i].timesSeen + ' times.';
+      createUL.appendChild(createLI);
+    }
+    resultsElement.appendChild(createUL);
+    for (var j = 0; j < imageElements.length; j++) {
+      imageElements[j].removeEventListener('click', imageWasClicked);
+    }
+  }
 }
 
 //event listener runs function when product is clicked
 for (var i = 0; i < imageElements.length; i++) {
   imageElements[i].addEventListener('click', imageWasClicked);
 }
-
-//picks random product to display and check against duplicates
-var nextProduct1 = Math.floor(Math.random() * allProducts.length);
-while((nextProduct1 === product1) || (nextProduct1 === product2) || (nextProduct1 === product3)) {
-  nextProduct1 = Math.floor(Math.random() * allProducts.length);
-}
-var nextProduct2 = Math.floor(Math.random() * allProducts.length);
-while((nextProduct2 === product1) || (nextProduct2 === product2) || (nextProduct2 === product3) || (nextProduct2 === nextProduct1)) {
-  nextProduct2 = Math.floor(Math.random() * allProducts.length);
-}
-var nextProduct3 = Math.floor(Math.random() * allProducts.length);
-while((nextProduct3 === product1) || (nextProduct3 === product2) || (nextProduct3 === product3) || (nextProduct3 === nextProduct1) || (nextProduct3 === nextProduct2)) {
-  nextProduct3 = Math.floor(Math.random() * allProducts.length);
-}
-
-product1 = nextProduct1;
-allProducts[product1].timesSeen++;
-product2 = nextProduct2;
-allProducts[product2].timesSeen++;
-product3 = nextProduct3;
-allProducts[product3].timesSeen++;
-
-//displays images
-imageElements[0].src = allProducts[product1].imageUrl;
-imageElements[1].src = allProducts[product2].imageUrl;
-imageElements[2].src = allProducts[product3].imageUrl;
-
-
-//accounts for first three products being seen
-allProducts[product1].timesSeen++;
-allProducts[product2].timesSeen++;
-allProducts[product3].timesSeen++;
-
-//creates results tab
-if(totalClicks === rounds) {
-  var resultsElement = document.getElementsByTagName('aside')[0];
-  if(resultsElement.firstElementChild){
-    resultsElement.firstElementChild.remove();
-  }
-  var title = document.createElement('h2');
-  title.textContent = 'Results';
-  resultsElement.appendChild(title);
-  var createUL = document.createElement('ul');
-  for (var i=0; i < allProducts.length; i++){
-    var createLI = document.createElement('li');
-    createLI.textContent = allProducts[i].name + ' had ' + allProducts[i].timesClicked + ' votes and was shown ' + allProducts[i].timesSeen + ' times.';
-    createUL.appendChild(createLI);
-  }
-  resultsElement.appendChild(createUL);
-  for (var j = 0; j < imageElements.length; j++) {
-    imageElements[j].removeEventListener('click', imageWasClicked);
-  }
-}
-
 
 
