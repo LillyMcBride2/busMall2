@@ -60,3 +60,17 @@ function imageWasClicked(event) {
     allProducts[product3].timesClicked++;
   }
 }
+
+//pick random product to display and check against duplicates
+var nextProduct1 = Math.floor(Math.random() * allProducts.length);
+while((nextProduct1 === product1) || (nextProduct1 === product2) || (nextProduct1 === product3)) {
+  nextProduct1 = Math.floor(Math.random() * allProducts.length);
+}
+var nextProduct2 = Math.floor(Math.random() * allProducts.length);
+while((nextProduct2 === product1) || (nextProduct2 === product2) || (nextProduct2 === product3) || (nextProduct2 === nextProduct1)) {
+  nextProduct2 = Math.floor(Math.random() * allProducts.length);
+}
+var nextProduct3 = Math.floor(Math.random() * allProducts.length);
+while((nextProduct3 === product1) || (nextProduct3 === product2) || (nextProduct3 === product3) || (nextProduct3 === nextProduct1) || (nextProduct3 === nextProduct2)) {
+  nextProduct3 = Math.floor(Math.random() * allProducts.length);
+}
