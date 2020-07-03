@@ -49,3 +49,14 @@ allProducts[product1].timesSeen++;
 allProducts[product2].timesSeen++;
 allProducts[product3].timesSeen++;
 
+//stores clicks
+function imageWasClicked(event) {
+  totalClicks++;
+  if(event.srcElement.id === '1') {
+    allProducts[product1].timesClicked++;
+  } else if (event.srcElement.id === '2') {
+    allProducts[product2].timesClicked++;
+  } else if (event.srcElement.id === '3') {
+    allProducts[product3].timesClicked++;
+  }
+}
