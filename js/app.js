@@ -105,9 +105,11 @@ function imageWasClicked(event) {
       createUL.appendChild(createLI);
     }
     resultsElement.appendChild(createUL);
+    if (totalClicks === rounds){
     for (var j = 0; j < imageElements.length; j++) {
       imageElements[j].removeEventListener('click', imageWasClicked);
     }
+    runChart();
   }
 }
 
@@ -123,5 +125,3 @@ function runChart() {
 
 
 }
-
-
