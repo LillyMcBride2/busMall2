@@ -16,6 +16,14 @@ function Product(name, imageUrl) {
   allProducts.push(this);
 }
 
+function getAllProductsProperty(productProperty) {
+  var answer = [];
+  for (var i = 0; i < allProducts.length; i++) {
+    answer[i] = allProducts[i][productProperty];
+  }
+  return answer;
+}
+
 // actually creates products
 new Product('Bag', 'images/bag.jpg');
 new Product('Banana Slicer', 'images/banana.jpg');
@@ -106,6 +114,14 @@ function imageWasClicked(event) {
 //event listener runs function when product is clicked
 for (var i = 0; i < imageElements.length; i++) {
   imageElements[i].addEventListener('click', imageWasClicked);
+}
+
+function runChart() {
+  var x = document.getElementById('resultsChart').getContext('2d');
+  var myChart = new Chart(x, {
+    type: 'bar',
+
+
 }
 
 
