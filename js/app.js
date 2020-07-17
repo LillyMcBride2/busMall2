@@ -112,16 +112,39 @@ function imageWasClicked(event) {
     runChart();
   }
 }
-
-//event listener runs function when product is clicked
 for (var i = 0; i < imageElements.length; i++) {
   imageElements[i].addEventListener('click', imageWasClicked);
 }
 
 function runChart() {
   var x = document.getElementById('resultsChart').getContext('2d');
-  var myChart = new Chart(x, {
+  new Chart(x, {
     type: 'bar',
+    data: {
+      labels: getAllProductsProperty('name'),
+      datasets: [{
+        label: '# of Votes',
+        data: getAllProductsProperty('timesClicked'),
+        backgroundColor: 'rgb(255, 255, 255',
+        borderWidth: 1
+      },
+      {
+        label: '# of Times Seen',
+        data: getAllProducts('timesSeen'),
+        backgroundColor: 'rgb(255, 255, 255',
 
-
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1
+          }
+        }]
+      }
+    }
+  });
 }
