@@ -16,6 +16,14 @@ function Product(name, imageUrl) {
   allProducts.push(this);
 }
 
+function getAllProductsProperty(productProperty) {
+  var answer = [];
+  for (var i = 0; i < allProducts.length; i++) {
+    answer[i] = allProducts[i][productProperty];
+  }
+  return answer;
+}
+
 // actually creates products
 new Product('Bag', 'images/bag.jpg');
 new Product('Banana Slicer', 'images/banana.jpg');
@@ -97,15 +105,125 @@ function imageWasClicked(event) {
       createUL.appendChild(createLI);
     }
     resultsElement.appendChild(createUL);
-    for (var j = 0; j < imageElements.length; j++) {
-      imageElements[j].removeEventListener('click', imageWasClicked);
+    if (totalClicks === rounds){
+      for (var j = 0; j < imageElements.length; j++) {
+        imageElements[j].removeEventListener('click', imageWasClicked);
+      }
     }
+    runChart();
   }
 }
 
-//event listener runs function when product is clicked
-for (var i = 0; i < imageElements.length; i++) {
-  imageElements[i].addEventListener('click', imageWasClicked);
-}
+  for (var i = 0; i < imageElements.length; i++) {
+    imageElements[i].addEventListener('click', imageWasClicked);
+  }
 
+  function runChart(){
+    var canvas = document.getElementById('myChart');
+    if(canvas.getContext('2d')) {
+    var x = canvas.getContext('2d');
+    new Chart(x, {
+      type: 'bar',
+      data: {
+        labels: getAllProductsProperty('name'),
+        datasets: [{
+          label: '# of Votes',
+          data: getAllProductsProperty('timesClicked'),
+          backgroundColor: ['rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)'],
+          borderColor: ['rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)'],
+          borderWidth: 1
+        },
+        {
+          label: '# of Times Seen',
+          data: getAllProducts('timesSeen'),
+          backgroundColor: ['rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)'],
+          borderColor: ['rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }]
+        }
+      }
+    });
+  }
+}
 
