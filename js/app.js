@@ -110,13 +110,7 @@ function imageWasClicked(event) {
         imageElements[j].removeEventListener('click', imageWasClicked);
       }
     }
-    var thisInterval = setInterval(function {
-      if(document.getElementById("canvas") != null){
-        runChart();
-        clearInterval(thisInterval)
-      }
-    },500)
-    thisInterval();
+    runChart();
   }
 }
 
@@ -126,8 +120,8 @@ function imageWasClicked(event) {
 
   function runChart(){
     var canvas = document.getElementById('myChart');
-    if(canvas.getContext) {
-    x = canvas.getContext('2d');
+    if(canvas.getContext('2d')) {
+    var x = canvas.getContext('2d');
     new Chart(x, {
       type: 'bar',
       data: {
@@ -135,13 +129,87 @@ function imageWasClicked(event) {
         datasets: [{
           label: '# of Votes',
           data: getAllProductsProperty('timesClicked'),
-          backgroundColor: 'rgb(255, 255, 255',
+          backgroundColor: ['rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)'],
+          borderColor: ['rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)',
+          'rgb(255, 255, 255)'],
           borderWidth: 1
         },
         {
           label: '# of Times Seen',
           data: getAllProducts('timesSeen'),
-          backgroundColor: 'rgb(0, 255, 255',
+          backgroundColor: ['rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)'],
+          borderColor: ['rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)',
+          'rgb(0, 255, 255)'],
           borderWidth: 1
         }]
       },
