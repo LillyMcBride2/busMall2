@@ -106,45 +106,56 @@ function imageWasClicked(event) {
     }
     resultsElement.appendChild(createUL);
     if (totalClicks === rounds){
-    for (var j = 0; j < imageElements.length; j++) {
-      imageElements[j].removeEventListener('click', imageWasClicked);
-    }
-    runChart();
-  }
-}
-for (var i = 0; i < imageElements.length; i++) {
-  imageElements[i].addEventListener('click', imageWasClicked);
-}
-
-function runChart() {
-  var x = document.getElementById('resultsChart').getContext('2d');
-  new Chart(x, {
-    type: 'bar',
-    data: {
-      labels: getAllProductsProperty('name'),
-      datasets: [{
-        label: '# of Votes',
-        data: getAllProductsProperty('timesClicked'),
-        backgroundColor: 'rgb(255, 255, 255',
-        borderWidth: 1
-      },
-      {
-        label: '# of Times Seen',
-        data: getAllProducts('timesSeen'),
-        backgroundColor: 'rgb(255, 255, 255',
-
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            stepSize: 1
-          }
-        }]
+      for (var j = 0; j < imageElements.length; j++) {
+        imageElements[j].removeEventListener('click', imageWasClicked);
       }
     }
-  });
+    var thisInterval = setInterval(function {
+      if(document.getElementById("canvas") != null){
+        runChart();
+        clearInterval(thisInterval)
+      }
+    },500)
+    thisInterval();
+  }
 }
+
+  for (var i = 0; i < imageElements.length; i++) {
+    imageElements[i].addEventListener('click', imageWasClicked);
+  }
+
+  function runChart(){
+    var canvas = document.getElementById('myChart');
+    if(canvas.getContext) {
+    x = canvas.getContext('2d');
+    new Chart(x, {
+      type: 'bar',
+      data: {
+        labels: getAllProductsProperty('name'),
+        datasets: [{
+          label: '# of Votes',
+          data: getAllProductsProperty('timesClicked'),
+          backgroundColor: 'rgb(255, 255, 255',
+          borderWidth: 1
+        },
+        {
+          label: '# of Times Seen',
+          data: getAllProducts('timesSeen'),
+          backgroundColor: 'rgb(0, 255, 255',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }]
+        }
+      }
+    });
+  }
+}
+
